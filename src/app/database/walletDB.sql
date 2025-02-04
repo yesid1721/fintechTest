@@ -15,12 +15,15 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+CREATE DATABASE IF NOT EXISTS walletdb;
+USE walletdb;
+
 --
 -- Table structure for table `customers`
 --
 
 DROP TABLE IF EXISTS `customers`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET @saved_cs_client     = @@character_set_client */; 
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `customers` (
   `customer_id` int NOT NULL AUTO_INCREMENT,
@@ -33,7 +36,7 @@ CREATE TABLE `customers` (
   UNIQUE KEY `document` (`document`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `phone` (`phone`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +45,7 @@ CREATE TABLE `customers` (
 
 LOCK TABLES `customers` WRITE;
 /*!40000 ALTER TABLE `customers` DISABLE KEYS */;
-INSERT INTO `customers` VALUES (10,'2222','yessid muriel','yessid@example.com','3002315455','2025-02-03 14:16:42'),(11,'1035868149','yessid muriel','yessid1721@gmail.com','3135731838','2025-02-04 04:05:28');
+INSERT INTO `customers` VALUES (12,'1032255698','Andrew smith','andrewsmith@gmail.com','555143256','2025-02-04 21:32:05');
 /*!40000 ALTER TABLE `customers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -65,7 +68,7 @@ CREATE TABLE `payments` (
   KEY `fk_payments_customer` (`customer_id`),
   CONSTRAINT `fk_payments_customer` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`customer_id`) ON DELETE CASCADE,
   CONSTRAINT `payments_chk_1` CHECK ((`amount` > 0))
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -74,7 +77,7 @@ CREATE TABLE `payments` (
 
 LOCK TABLES `payments` WRITE;
 /*!40000 ALTER TABLE `payments` DISABLE KEYS */;
-INSERT INTO `payments` VALUES (3,11,100.00,'rw8req','2025-02-04 05:44:53','confirmed'),(4,11,850.00,'kASH1l','2025-02-04 06:19:14','confirmed'),(5,11,150.00,'JDn5mE','2025-02-04 06:19:21','confirmed'),(6,11,300.00,'OALIvY','2025-02-04 06:24:36','confirmed');
+INSERT INTO `payments` VALUES (7,12,2500.00,'wQOyzN','2025-02-04 22:10:57','confirmed'),(8,12,1800.00,'oNFXgq','2025-02-04 22:11:02','confirmed'),(9,12,3000.00,'wdMA3D','2025-02-04 22:11:07','failed'),(10,12,500.00,'w31OGx','2025-02-04 22:44:29','pending'),(11,12,500.00,'0d3SoF','2025-02-04 23:03:23','pending');
 /*!40000 ALTER TABLE `payments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -93,7 +96,7 @@ CREATE TABLE `wallet` (
   PRIMARY KEY (`wallet_id`),
   KEY `fk_wallet_customer` (`customer_id`),
   CONSTRAINT `fk_wallet_customer` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`customer_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -102,7 +105,7 @@ CREATE TABLE `wallet` (
 
 LOCK TABLES `wallet` WRITE;
 /*!40000 ALTER TABLE `wallet` DISABLE KEYS */;
-INSERT INTO `wallet` VALUES (3,10,210.00,'2025-02-03 15:22:39'),(4,11,1600.00,'2025-02-04 06:25:49');
+INSERT INTO `wallet` VALUES (5,12,5700.00,'2025-02-04 23:45:27');
 /*!40000 ALTER TABLE `wallet` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -115,4 +118,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-02-04  1:48:15
+-- Dump completed on 2025-02-04 18:49:40
