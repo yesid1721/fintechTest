@@ -4,6 +4,8 @@ export default {
   port: process.env.PORT,
   node: process.env.NODE_ENV,
   baseUrl: process.env.BASE_URL,
+  email: process.env.SEND_EMAIL,
+  emailPass: process.env.EMAIL_PASS,
   apiVersion: version,
   database: {
     connection: {

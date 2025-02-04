@@ -8,7 +8,6 @@ export class PaymentsModel extends Model {
     declare payment_id: number;
     declare customer_id: number;
     declare amount: number;
-    declare session_id: string;
     declare token: string;
     declare generated_at: Date
     declare status: 'pending'|'confirmed'|'failed';
@@ -28,10 +27,6 @@ PaymentsModel.init(
         },
         amount:{
             type: DataTypes.DECIMAL,
-            allowNull: false,
-        },
-        session_id:{
-            type: DataTypes.STRING,
             allowNull: false,
         },
         token:{

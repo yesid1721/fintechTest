@@ -9,7 +9,7 @@ export class CustomerUseCase {
             const result = await this.customerServiceSoap.registerCustomer(customerData);
             return result;
         } catch (error) {
-            console.error('Error registering customer:', error);
+            console.error('Error registrando el cliente:', error);
             throw error;
         }
     };
@@ -18,7 +18,7 @@ export class CustomerUseCase {
         try {
             return await this.customerServiceSoap.findCustomer(parmas);
         } catch (error) {
-            console.error('Error registering customer:', error);
+            console.error('Error buscando el cliente:', error);
             throw error;
         }
     }

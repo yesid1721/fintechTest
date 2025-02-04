@@ -96,7 +96,6 @@ export class WalletController {
                     }
                 );
             }
-            
         } catch (error) {
             const errorAsError = error as Error;
             res.status(500).json(

@@ -3,7 +3,8 @@ import { Router } from "express";
 import config from "@app/config";
 import { 
     customers,
-    wallet 
+    wallet,
+    payment
 } from "@api/v1.routes";
 
 const routes = Router();
@@ -14,6 +15,7 @@ routes.get("/", (_, res) => {
 
 routes.use("/customers", customers);
 routes.use("/wallet", wallet);
+routes.use("/payments", payment)
 
 export default routes;
 

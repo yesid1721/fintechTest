@@ -6,10 +6,10 @@ export class CustomersRepository implements ICustomersRepository {
         return await CustomersModel.create(customerData);
     };
 
-    async findCustomer(parmas: Partial<CustomersModel>): Promise<CustomersModel | null> {
+    async findCustomer(params: Partial<CustomersModel>): Promise<CustomersModel | null> {
         try {
             const customer =  await CustomersModel.findOne({
-                where: {...parmas},
+                where: {...params},
             });
             if (!customer) {
                 return null

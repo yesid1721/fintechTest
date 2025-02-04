@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://example.com/payments"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             targetNamespace="http://example.com/payments"
+             name="PaymentsService">
+
+  <types>
+    <xsd:schema targetNamespace="http://example.com/payments">
+      <xsd:element name="sendPaymentRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="payData" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="sendPaymentResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="findPaymentRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="params" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="findPaymentResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </types>
+
+  <message name="sendPaymentRequest">
+    <part name="parameters" element="tns:sendPaymentRequest"/>
+  </message>
+  <message name="sendPaymentResponse">
+    <part name="parameters" element="tns:sendPaymentResponse"/>
+  </message>
+  <message name="findPaymentRequest">
+    <part name="parameters" element="tns:findPaymentRequest"/>
+  </message>
+  <message name="findPaymentResponse">
+    <part name="parameters" element="tns:findPaymentResponse"/>
+  </message>
+
+  <portType name="PaymentsServicePortType">
+    <operation name="sendPayment">
+      <input message="tns:sendPaymentRequest"/>
+      <output message="tns:sendPaymentResponse"/>
+    </operation>
+    <operation name="findPayment">
+      <input message="tns:findPaymentRequest"/>
+      <output message="tns:findPaymentResponse"/>
+    </operation>
+  </portType>
+
+  <binding name="PaymentsServiceBinding" type="tns:PaymentsServicePortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="sendPayment">
+      <soap:operation soapAction="http://example.com/payments/sendPayment"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="findPayment">
+      <soap:operation soapAction="http://example.com/payments/findPayment"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+
+  <service name="PaymentsService">
+    <port name="PaymentsServicePort" binding="tns:PaymentsServiceBinding">
+      <soap:address location="http://localhost:8002/wsdl"/>
+    </port>
+  </service>
+</definitions>

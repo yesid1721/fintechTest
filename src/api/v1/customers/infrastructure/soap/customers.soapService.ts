@@ -27,9 +27,9 @@ export class CustomerService {
         }
     };
 
-    async findCustomer(parmas: Partial<CustomersModel>): Promise<any | null> {
+    async findCustomer(params: Partial<CustomersModel>): Promise<any | null> {
         try {
-            return await this.customerSoapUseCase.findCustomer(parmas);
+            return await this.customerSoapUseCase.findCustomer(params);
         } catch (error) {
             return error;
         }
@@ -43,6 +43,9 @@ export const CustomerServiceSoap = {
         CustomerServicePort: {
             registerCustomer: async (customerData: Partial<CustomersModel>): Promise<any> => {
                 return await customerServiceSoap.registerCustomer(customerData);
+            },
+            findCustomer: async (params: Partial<CustomersModel>): Promise<any | null> => {
+                return await customerServiceSoap.findCustomer(params);
             }
         }
     }

@@ -53,10 +53,10 @@ export const WalletServiceSoap = {
             }
         }
     }
-}
+};
 
-app.listen(8802, () => {
+app.listen(8803, () => {
     listen(app, '/wsdl', WalletServiceSoap, xml, () => {
-        console.log('SOAP service listening on port 8001')
+        console.log('SOAP service listening on port 8003')
     });
 });
